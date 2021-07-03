@@ -7,7 +7,7 @@ import json
 
 
 def find_user(request):
-    user = get_object_or_404(User, pk=request.GET.get("userId"))
+    user = get_object_or_404(User, pk=request.GET.get("userid"))
     result = {'user': user}
     print('result: ', result)
 
