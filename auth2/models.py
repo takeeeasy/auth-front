@@ -5,9 +5,11 @@ from django.db import models
 
 
 class User(models.Model):
-    username = models.CharField(max_length=16)
+    userid = models.CharField(max_length=12)
+    username = models.CharField(max_length=12)
     password = models.CharField(max_length=20)
-    date_joined = models.DateTimeField()
+    email = models.CharField(max_length=20)
+    role = models.CharField(max_length=8)
 
     def __str__(self):
         return self.id
