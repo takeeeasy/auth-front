@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.models import User
+from ts25_auth.models import User
 from rest_framework.response import Response
 from django.http import JsonResponse
 from django.http import HttpResponse
