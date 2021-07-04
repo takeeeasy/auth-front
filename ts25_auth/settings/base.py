@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth2.apps.AuthConfig',
+    'ts25_auth.apps.AuthConfig',
     'rest_framework',
 ]
 
@@ -88,6 +88,9 @@ WSGI_APPLICATION = 'auth_service2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=django,public'
+        },
         'NAME': 'TS25',
         'USER': 'dbmasteruser',
         'PASSWORD': 'devuser12#',
@@ -96,6 +99,9 @@ DATABASES = {
     },
     'TS25AUTH': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=ts25auth,public'
+        },
         'NAME': 'TS25',
         'USER': 'dbmasteruser',
         'PASSWORD': 'devuser12#',
@@ -110,16 +116,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth2.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.ts25_auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth2.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.ts25_auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth2.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.ts25_auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth2.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.ts25_auth.password_validation.NumericPasswordValidator',
     },
 ]
 
