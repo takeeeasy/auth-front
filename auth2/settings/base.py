@@ -93,6 +93,14 @@ DATABASES = {
         'PASSWORD': 'devuser12#',
         'HOST': 'ls-09fb9ae9230de0f3dd768bb14371a25536da3870.cgsp0c9418c4.ap-northeast-2.rds.amazonaws.com',
         'PORT': '5432',
+    },
+    'TS25AUTH': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'TS25',
+        'USER': 'dbmasteruser',
+        'PASSWORD': 'devuser12#',
+        'HOST': 'ls-09fb9ae9230de0f3dd768bb14371a25536da3870.cgsp0c9418c4.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
