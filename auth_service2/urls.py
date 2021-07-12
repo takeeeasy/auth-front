@@ -15,14 +15,45 @@ Including another URLconf
 """
 from ts25_auth import views
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
 
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user/find', views.find_user),
-]
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    path('admin/', admin.site.urls),  ## contains a URL pattern.
+    path('user/find', views.find_user),
+    path('user/login_check', views.login_check),
+    re_path(r'^user/login_check', views.login_check),  ## contains a regular expression.
+
+    url(r'^article/(\d+)/', views.viewArticle, name='article'),
+    ## r: to use regular expression operations     e.g): (\d+).
+    url(r'^hello/', views.hello, name='hello'),
+    # url() : This function is an alias to django.urls.re_path(), Deprecated since version 3.1:.
+
+    # rest_framework
+
+]
 
 # from django.contrib import admin
 # from django.urls import path
